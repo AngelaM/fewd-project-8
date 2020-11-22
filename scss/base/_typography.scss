@@ -1,0 +1,49 @@
+  /* ---- Page Elements ---- */
+
+  body {
+    font-family: $font-stack;
+  }
+
+  h1 {
+    font-weight: $font-light;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .search-container {
+    font-size: .9em;
+
+    input {
+      font-weight: $font-light;
+      color: $color-grey;
+    }
+  }
+
+
+
+  .card-info .name {
+    font-weight: $font-bold;
+  }
+
+  .card-info .email ,
+  .card-info .location {
+    font-weight: $font-light;
+    font-size: .9em;
+  }
+
+
+/* -------------- Media Queries -------------- */
+
+/* ---- Medium and Large Screens ---- */
+
+@media (min-width: $medium) {
+
+}
+
+@media (min-width: $large) {
+  h1 {
+    text-align: left;
+    padding-left: 20px;
+  }
+}

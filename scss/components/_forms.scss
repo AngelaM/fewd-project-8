@@ -1,0 +1,45 @@
+
+/* ---- Search Bar ---- */
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 3%;
+
+    input {
+        width: 260px;
+        padding: 8px;
+        border-top: $border-grey;
+        border-left: $border-grey;
+        border-bottom: $border-grey;
+        border-right: none;
+    }
+
+    button {
+        padding: 8px;
+        float: right;
+        border-top: $border-grey;
+        border-right: $border-grey;
+        border-bottom: $border-grey;
+        border-left: none;
+        background-color: $color-white;
+    }
+
+    i {
+        color: $color-red;
+    }
+}
+
+/* -------------- Media Queries -------------- */
+
+/* ---- Medium and Large Screens ---- */
+
+@media (min-width: $medium) {
+
+}
+
+@media (min-width: $large) {
+    .search-container {
+        justify-content: flex-end;
+    }
+}
