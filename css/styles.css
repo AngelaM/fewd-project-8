@@ -361,6 +361,7 @@ h1 {
   color: #b2b2b2;
 }
 
+/* ---- Cards ---- */
 .card-info .name {
   font-weight: 700;
 }
@@ -371,17 +372,44 @@ h1 {
   font-size: 0.9em;
 }
 
+/* ---- Modal ---- */
+.modal-content {
+  text-align: center;
+  font-weight: 300;
+}
+.modal-content .name {
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.modal-x {
+  color: #656565;
+  text-align: right;
+  font-size: 36px;
+}
+
+.navigate div i {
+  font-size: 1.2em;
+}
+
 /* -------------- Media Queries -------------- */
 /* ---- Medium and Large Screens ---- */
-@media (min-width: 1024px) {
+@media (min-width: 1250px) {
   h1 {
     text-align: left;
     padding-left: 20px;
   }
 }
-.card-image img {
+img {
   border-radius: 50%;
+}
+
+.card-image img {
   width: 100px;
+}
+
+.modal-image img {
+  width: 150px;
 }
 
 /* ---- Search Bar ---- */
@@ -389,6 +417,7 @@ h1 {
   display: flex;
   justify-content: center;
   padding: 10px 3%;
+  margin-right: 10px;
 }
 .search-container input {
   width: 260px;
@@ -413,27 +442,35 @@ h1 {
 
 /* -------------- Media Queries -------------- */
 /* ---- Medium and Large Screens ---- */
-@media (min-width: 1024px) {
+@media (min-width: 1250px) {
   .search-container {
     justify-content: flex-end;
+    margin-right: 30px;
   }
 }
 /* -------------- Grid Areas -------------- */
+* {
+  box-sizing: border-box;
+}
+
 body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
   background-color: #f4f4f4;
+  max-width: 1250px;
 }
 
 main {
   grid-area: main;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 header {
   padding-top: 40px;
   grid-area: header;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b2b2b2;
 }
 
 /* -------------- Grid Layout -------------- */
@@ -454,13 +491,15 @@ body {
 .card {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: hidden;
   width: 300px;
   border: 1px solid #b2b2b2;
   border-radius: 5px;
   background-color: #fff;
   padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .card-info {
@@ -472,5 +511,89 @@ body {
 
 /* -------------- Media Queries -------------- */
 /* ---- Medium and Large Screens ---- */
+@media (min-width: 768px) {
+  header {
+    padding-bottom: 30px;
+    border: none;
+  }
+}
+/* -------------- Modal Background -------------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #2a2a2a;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-box {
+  background-color: #fff;
+  margin: 18% auto;
+  padding: 10px 20px 20px 20px;
+  border: 1px solid #b2b2b2;
+  width: 80%;
+  max-width: 360px;
+  border-radius: 10px;
+}
+
+.x {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 16px;
+}
+
+.modal-x {
+  width: 20px;
+  cursor: pointer;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.modal-basic-info,
+.modal-contact-info {
+  padding: 20px;
+}
+.modal-basic-info div,
+.modal-contact-info div {
+  padding: 4px;
+}
+
+.modal-basic-info {
+  border-bottom: 1px solid #b2b2b2;
+}
+
+.navigate {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 80px 0 80px;
+}
+
+.navigate div {
+  cursor: pointer;
+}
+
+/* -------------- Media Queries -------------- */
+/* ---- Medium and Large Screens ---- */
+@media (min-width: 768px) {
+  .modal-box {
+    width: 360px;
+    margin-top: 12%;
+  }
+}
+@media (min-width: 1250px) {
+  .modal-box {
+    margin-left: 446px;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

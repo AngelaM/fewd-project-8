@@ -1,37 +1,62 @@
-  /* ---- Page Elements ---- */
 
-  body {
-    font-family: $font-stack;
-  }
+/* ---- Page Elements ---- */
 
-  h1 {
+body {
+  font-family: $font-stack;
+}
+
+h1 {
+  font-weight: $font-light;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.search-container {
+  font-size: .9em;
+
+  input {
     font-weight: $font-light;
-    text-transform: uppercase;
-    font-size: 1.5em;
-    text-align: center;
+    color: $color-grey;
   }
-
-  .search-container {
-    font-size: .9em;
-
-    input {
-      font-weight: $font-light;
-      color: $color-grey;
-    }
-  }
+}
 
 
+/* ---- Cards ---- */
 
-  .card-info .name {
+.card-info .name {
+  font-weight: $font-bold;
+}
+
+.card-info .email ,
+.card-info .location {
+  font-weight: $font-light;
+  font-size: .9em;
+}
+
+
+/* ---- Modal ---- */
+
+.modal-content {
+  text-align: center;
+  font-weight: $font-light;
+
+  .name {
     font-weight: $font-bold;
+    font-size: 1.2em;
   }
 
-  .card-info .email ,
-  .card-info .location {
-    font-weight: $font-light;
-    font-size: .9em;
-  }
+}
 
+.modal-x {
+  color: $color-dark-grey;
+  text-align: right;
+  font-size: 36px;
+}
+
+.navigate div i {
+  font-size: 1.2em;
+}
 
 /* -------------- Media Queries -------------- */
 
