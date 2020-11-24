@@ -1,9 +1,9 @@
-let modal = document.querySelector(".modal");
-let x = document.querySelector(".modal-x");
-let directory = document.querySelector(".directory-container");
-let modalBox = document.querySelector(".modal-content");
+const modal = document.querySelector(".modal");
+const x = document.querySelector(".modal-x");
+const directory = document.querySelector(".directory-container");
+const modalBox = document.querySelector(".modal-content");
 
-let API = 'https://randomuser.me/api/?results=12&nat=US&inc=name,location,email,dob,phone,picture&noinfo';
+const API = 'https://randomuser.me/api/?results=12&nat=US&inc=name,location,email,dob,phone,picture&noinfo';
 let employees=[];
 let cardID = 0;
 
@@ -33,16 +33,17 @@ function createContent() {
 //Create array of formatted employee objects
 function createEmployees(employeeData) {
     employeeData.forEach(employee => {
+        let {name, email, location, phone, dob, picture} = employee;
         let e = {};
-        e.name = `${employee.name.first} ${employee.name.last}`;
-        e.email = employee.email;
-        e.location = employee.location.city;
-        let state = getStateCode(employee.location.state);
-        e.address = `${employee.location.street.number} ${employee.location.street.name} ${employee.location.city}, ${state} ${employee.location.postcode}`;
-        e.phone = (employee.phone).replace('-', ' ');
-        let date = new Date(employee.dob.date);
+        e.name = `${name.first} ${name.last}`;
+        e.email = email;
+        e.location = location.city;
+        let state = getStateCode(location.state);
+        e.address = `${location.street.number} ${location.street.name} ${location.city}, ${state} ${location.postcode}`;
+        e.phone = (phone).replace('-', ' ');
+        let date = new Date(dob.date);
         e.birthday = `${('0' + (date.getMonth()+1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}/${date.getYear()}`;
-        e.picture = employee.picture.medium;
+        e.picture = picture.medium;
         employees.push(e);
     });
 }
@@ -70,12 +71,13 @@ function createModal() {
     //Create listener to open modal box
     directory.addEventListener("click", (e) => {
         if (e.target !== directory) {
-        cardID = parseInt(e.target.closest(".directory-card").getAttribute('id'));
-        createModalContent(cardID);
-        modal.style.display = "block";
+            cardID = parseInt(e.target.closest(".directory-card").getAttribute('id'));
+            createModalContent(cardID);
+            modal.style.display = "block";
         }
     })
 
+    //Create listeners for navigation arrows on modal box
     let next = document.querySelector(".next-employee i");
     let last = document.querySelector(".last-employee i");
 
@@ -112,19 +114,19 @@ function createModal() {
     }
 }
 
-//Create HTML content for chosen card's modal
+//Create HTML content for a card's employee information
 function createModalContent(index) {
-    console.log(index);
-    let html = `<div class="modal-image" id="${index}"><img src="${employees[index].picture}" alt="${employees[index].name}"></div>
+    let {picture, name, email, location, phone, address, birthday} = employees[index];
+    let html = `<div class="modal-image" id="${index}"><img src="${picture}" alt="${name}"></div>
                 <div class="modal-basic-info">
-                    <div class="name">${employees[index].name}</div>
-                    <div class="email">${employees[index].email}</div>
-                    <div class="location">${employees[index].location}</div>
+                    <div class="name">${name}</div>
+                    <div class="email">${email}</div>
+                    <div class="location">${location}</div>
                 </div>
                     <div class="modal-contact-info">
-                    <div class="phone">${employees[index].phone}</div>
-                    <div class="address">${employees[index].address}</div>
-                    <div class="birthday">Birthday: ${employees[index].birthday}</div>
+                    <div class="phone">${phone}</div>
+                    <div class="address">${address}</div>
+                    <div class="birthday">Birthday: ${birthday}</div>
                 </div>`
     modalBox.innerHTML = html;
 }
@@ -132,16 +134,12 @@ function createModalContent(index) {
 
 /********
  * Helper Function to Convert State Name to Code
- * (from https://gist.github.com/calebgrove/c285a9510948b633aa47)
  ********/
 
-getStateCode = function (stateFullName) {
-    let returnState = this.stateList[stateFullName]
-    if (returnState) {
-        return returnState;
-    } else {
-        return stateFullName;
-    }
+getStateCode = function (stateName) {
+    let returnState = this.stateList[stateName]
+    if (returnState) return returnState;
+    return stateName;
 }
     stateList = {
     'Arizona': 'AZ',

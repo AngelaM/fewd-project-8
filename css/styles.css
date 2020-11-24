@@ -343,14 +343,16 @@ template {
 /* ---- Media Variables ---- */
 /* ---- Page Elements ---- */
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato", sans-serif;
+  color: #2a2a2a;
 }
 
 h1 {
   font-weight: 300;
   text-transform: uppercase;
-  font-size: 1.5em;
+  font-size: 1.3em;
   text-align: center;
+  font-weight: 700;
 }
 
 .search-container {
@@ -358,12 +360,13 @@ h1 {
 }
 .search-container input {
   font-weight: 300;
-  color: #b2b2b2;
+  color: #d0d0d0;
 }
 
 /* ---- Cards ---- */
 .card-info .name {
   font-weight: 700;
+  font-size: 1.2em;
 }
 
 .card-info .email,
@@ -376,7 +379,7 @@ h1 {
 .modal-content {
   text-align: center;
   font-weight: 300;
-  font-size: 0.9em;
+  font-size: 0.95em;
 }
 .modal-content .name {
   font-weight: 700;
@@ -384,7 +387,7 @@ h1 {
 }
 
 .modal-x {
-  color: #656565;
+  color: #2a2a2a;
   text-align: right;
   font-size: 36px;
 }
@@ -423,17 +426,17 @@ img {
 .search-container input {
   width: 260px;
   padding: 8px;
-  border-top: 1px solid #b2b2b2;
-  border-left: 1px solid #b2b2b2;
-  border-bottom: 1px solid #b2b2b2;
+  border-top: 2px solid #d0d0d0;
+  border-left: 2px solid #d0d0d0;
+  border-bottom: 2px solid #d0d0d0;
   border-right: none;
 }
 .search-container button {
   padding: 8px;
   float: right;
-  border-top: 1px solid #b2b2b2;
-  border-right: 1px solid #b2b2b2;
-  border-bottom: 1px solid #b2b2b2;
+  border-top: 2px solid #d0d0d0;
+  border-right: 2px solid #d0d0d0;
+  border-bottom: 2px solid #d0d0d0;
   border-left: none;
   background-color: #fff;
 }
@@ -446,7 +449,7 @@ img {
 @media (min-width: 1250px) {
   .search-container {
     justify-content: flex-end;
-    margin-right: 30px;
+    margin-right: 20px;
   }
 }
 /* -------------- Grid Areas -------------- */
@@ -458,7 +461,7 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  background-color: #f4f4f4;
+  background-color: #f7f7f7;
   max-width: 1250px;
 }
 
@@ -471,7 +474,7 @@ header {
   padding-top: 40px;
   grid-area: header;
   padding-bottom: 20px;
-  border-bottom: 1px solid #b2b2b2;
+  border-bottom: 2px solid #d0d0d0;
 }
 
 /* -------------- Grid Layout -------------- */
@@ -494,20 +497,32 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   overflow: hidden;
-  width: 300px;
-  border: 1px solid #b2b2b2;
-  border-radius: 5px;
+  width: 360px;
+  border: 2px solid #d0d0d0;
+  border-radius: 6px;
   background-color: #fff;
-  padding: 10px;
+  padding: 20px 10px 20px 12px;
   margin: 10px;
   cursor: pointer;
+}
+
+.card-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 0 20px 20px;
+  padding: 20px 0 20px 12px;
+}
+.card-info .name,
+.card-info .email,
+.card-info .location {
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 /* -------------- Media Queries -------------- */
@@ -536,9 +551,9 @@ body {
   background-color: #fff;
   margin: 18% auto;
   padding: 10px 20px 20px 20px;
-  border: 1px solid #b2b2b2;
+  border: 2px solid #d0d0d0;
   width: 80%;
-  max-width: 360px;
+  max-width: 400px;
   border-radius: 10px;
 }
 
@@ -560,17 +575,19 @@ body {
   overflow: hidden;
 }
 
-.modal-basic-info,
-.modal-contact-info {
-  padding: 20px;
-}
 .modal-basic-info div,
 .modal-contact-info div {
   padding: 4px;
 }
 
 .modal-basic-info {
-  border-bottom: 1px solid #b2b2b2;
+  padding: 20px;
+  border-bottom: 2px solid #d0d0d0;
+}
+
+.modal-contact-info {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .navigate {
@@ -587,13 +604,13 @@ body {
 /* ---- Medium and Large Screens ---- */
 @media (min-width: 768px) {
   .modal-box {
-    width: 360px;
+    width: 400px;
     margin-top: 12%;
   }
 }
 @media (min-width: 1250px) {
   .modal-box {
-    margin-left: 446px;
+    margin-left: 425px;
   }
 }
 
