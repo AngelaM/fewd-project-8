@@ -1,0 +1,54 @@
+
+/* -------------- IMAGES -------------- */
+
+.round {
+    border-radius: 50%;
+}
+
+.card-image img{
+    width: 100px;
+}
+
+.modal-image img {
+    width: 150px;
+}
+
+/* -------------- FORMS -------------- */
+
+/** Search Bar **/
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 3%;
+    margin-right: 10px;
+
+    @include for-size(large) {    
+        justify-content: flex-end;
+        margin-right: 20px; 
+     }
+
+    input {
+        width: 260px;
+        padding: 8px;
+        border-top: $border-blue-thin;
+        border-left: $border-blue-thin;
+        border-bottom: $border-blue-thin;
+        border-right: none;
+    }
+
+    button {
+        padding: 8px;
+        float: right;
+        border-top: $border-blue-thin;
+        border-right: $border-blue-thin;
+        border-bottom: $border-blue-thin;
+        border-left: none;
+        background-color: $color-white;
+    }
+
+    i {
+        color: $color-blue;
+    }
+}
+

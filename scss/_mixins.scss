@@ -1,0 +1,10 @@
+
+/* ---- Media Queries ---- */
+
+@mixin for-size($size) {
+    @if $size == medium {
+      @media (min-width: 768px) { @content; }
+    } @else if $size == large {
+      @media (min-width: 1250px) { @content; }
+    } 
+  }

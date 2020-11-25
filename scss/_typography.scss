@@ -12,6 +12,11 @@ h1 {
   font-size: 1.3em;
   text-align: center;
   font-weight: $font-bold;
+
+  @include for-size(large) {    
+    text-align: left;
+    padding-left: 20px;
+ }
 }
 
 .search-container {
@@ -25,15 +30,18 @@ h1 {
 
 /* ---- Cards ---- */
 
-.card-info .name {
-  font-weight: $font-bold;
-  font-size: 1.2em;
-}
+.card-info {
 
-.card-info .email ,
-.card-info .location {
-  font-weight: $font-light;
-  font-size: .9em;
+  .name {
+    font-weight: $font-bold;
+    font-size: 1.2em;
+  }
+
+  .email ,
+  .location {
+    font-weight: $font-light;
+    font-size: .9em;
+  }
 }
 
 
@@ -59,19 +67,4 @@ h1 {
 
 .navigate div i {
   font-size: 1.2em;
-}
-
-/* -------------- Media Queries -------------- */
-
-/* ---- Medium and Large Screens ---- */
-
-@media (min-width: $medium) {
-
-}
-
-@media (min-width: $large) {
-  h1 {
-    text-align: left;
-    padding-left: 20px;
-  }
 }

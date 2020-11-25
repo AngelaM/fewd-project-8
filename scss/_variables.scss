@@ -3,11 +3,9 @@
 
 $color-white: #fff;
 $color-black: #2a2a2a;
-
-$color-grey: #d0d0d0;
-$color-light-grey: #f7f7f7;
-
-$color-red: red;
+$color-blue: #A2ADC3;
+$color-grey: #e3e3e3;
+$color-light-grey: rgba(247,247,247, .6);
 
 
 /* ---- Font Variables ---- */
@@ -20,8 +18,5 @@ $font-bold: 700;
 /* ---- Media Variables ---- */
 
 $border-grey: 2px solid $color-grey;
-
-/* ---- Media Variables ---- */
-
-$medium: 768px;
-$large: 1250px;
+$border-blue: 2px solid $color-blue;
+$border-blue-thin: 1px solid $color-blue;

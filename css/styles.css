@@ -340,7 +340,7 @@ template {
 /* ---- Color Variables ---- */
 /* ---- Font Variables ---- */
 /* ---- Media Variables ---- */
-/* ---- Media Variables ---- */
+/* ---- Media Queries ---- */
 /* ---- Page Elements ---- */
 body {
   font-family: "Lato", sans-serif;
@@ -353,6 +353,12 @@ h1 {
   font-size: 1.3em;
   text-align: center;
   font-weight: 700;
+}
+@media (min-width: 1250px) {
+  h1 {
+    text-align: left;
+    padding-left: 20px;
+  }
 }
 
 .search-container {
@@ -367,7 +373,6 @@ h1 {
   font-weight: 700;
   font-size: 1.2em;
 }
-
 .card-info .email,
 .card-info .location {
   font-weight: 300;
@@ -395,73 +400,21 @@ h1 {
   font-size: 1.2em;
 }
 
-/* -------------- Media Queries -------------- */
-/* ---- Medium and Large Screens ---- */
-@media (min-width: 1250px) {
-  h1 {
-    text-align: left;
-    padding-left: 20px;
-  }
-}
-img {
-  border-radius: 50%;
-}
-
-.card-image img {
-  width: 100px;
-}
-
-.modal-image img {
-  width: 150px;
-}
-
-/* ---- Search Bar ---- */
-.search-container {
-  display: flex;
-  justify-content: center;
-  padding: 10px 3%;
-  margin-right: 10px;
-}
-.search-container input {
-  width: 260px;
-  padding: 8px;
-  border-top: 2px solid #d0d0d0;
-  border-left: 2px solid #d0d0d0;
-  border-bottom: 2px solid #d0d0d0;
-  border-right: none;
-}
-.search-container button {
-  padding: 8px;
-  float: right;
-  border-top: 2px solid #d0d0d0;
-  border-right: 2px solid #d0d0d0;
-  border-bottom: 2px solid #d0d0d0;
-  border-left: none;
-  background-color: #fff;
-}
-.search-container i {
-  color: red;
-}
-
-/* -------------- Media Queries -------------- */
-/* ---- Medium and Large Screens ---- */
-@media (min-width: 1250px) {
-  .search-container {
-    justify-content: flex-end;
-    margin-right: 20px;
-  }
-}
-/* -------------- Grid Areas -------------- */
+/* -------------- PAGE LAYOUT -------------- */
 * {
   box-sizing: border-box;
 }
 
 body {
   overflow: hidden;
+  margin: 0 auto;
   height: 100vh;
   width: 100vw;
-  background-color: #f7f7f7;
+  background-color: rgba(247, 247, 247, 0.6);
   max-width: 1250px;
+  display: grid;
+  align-content: start;
+  grid-template-areas: "header" "main";
 }
 
 main {
@@ -473,17 +426,16 @@ header {
   padding-top: 40px;
   grid-area: header;
   padding-bottom: 20px;
-  border-bottom: 2px solid #d0d0d0;
+  border-bottom: 2px solid #e3e3e3;
+}
+@media (min-width: 768px) {
+  header {
+    padding-bottom: 30px;
+    border: none;
+  }
 }
 
-/* -------------- Grid Layout -------------- */
-body {
-  display: grid;
-  align-content: start;
-  grid-template-areas: "header" "main";
-}
-
-/* -------------- Page Element Layout -------------- */
+/* -------------- EMPLOYEE DIRECTORY -------------- */
 .directory-container {
   display: flex;
   flex-wrap: wrap;
@@ -497,12 +449,15 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
   width: 360px;
-  border: 2px solid #d0d0d0;
+  border: 2px solid #e3e3e3;
   border-radius: 6px;
   background-color: #fff;
   padding: 20px 10px 20px 12px;
   margin: 10px;
   cursor: pointer;
+}
+.directory-card:hover {
+  border: 2px solid #A2ADC3;
 }
 
 .card-image {
@@ -524,15 +479,7 @@ body {
   padding-bottom: 4px;
 }
 
-/* -------------- Media Queries -------------- */
-/* ---- Medium and Large Screens ---- */
-@media (min-width: 768px) {
-  header {
-    padding-bottom: 30px;
-    border: none;
-  }
-}
-/* -------------- Modal Background -------------- */
+/* -------------- MODAL -------------- */
 .modal {
   display: none;
   position: fixed;
@@ -550,10 +497,16 @@ body {
   background-color: #fff;
   margin: 18% auto;
   padding: 10px 20px 20px 20px;
-  border: 2px solid #d0d0d0;
+  border: 2px solid #e3e3e3;
   width: 80%;
   max-width: 400px;
   border-radius: 10px;
+}
+@media (min-width: 768px) {
+  .modal-box {
+    width: 400px;
+    margin-top: 12%;
+  }
 }
 
 .x {
@@ -574,19 +527,20 @@ body {
   overflow: hidden;
 }
 
-.modal-basic-info div,
-.modal-contact-info div {
-  padding: 4px;
-}
-
-.modal-basic-info {
+.modal-info {
   padding: 20px;
-  border-bottom: 2px solid #d0d0d0;
+  border-bottom: 2px solid #e3e3e3;
+}
+.modal-info div {
+  padding: 6px;
 }
 
-.modal-contact-info {
+.modal-contact {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.modal-contact div {
+  padding: 5px;
 }
 
 .navigate {
@@ -594,23 +548,56 @@ body {
   justify-content: space-around;
   padding: 20px 80px 0 80px;
 }
-
 .navigate div {
   cursor: pointer;
 }
 
-/* -------------- Media Queries -------------- */
-/* ---- Medium and Large Screens ---- */
-@media (min-width: 768px) {
-  .modal-box {
-    width: 400px;
-    margin-top: 12%;
-  }
+/* -------------- IMAGES -------------- */
+.round {
+  border-radius: 50%;
+}
+
+.card-image img {
+  width: 100px;
+}
+
+.modal-image img {
+  width: 150px;
+}
+
+/* -------------- FORMS -------------- */
+/** Search Bar **/
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 3%;
+  margin-right: 10px;
 }
 @media (min-width: 1250px) {
-  .modal-box {
-    margin-left: 425px;
+  .search-container {
+    justify-content: flex-end;
+    margin-right: 20px;
   }
+}
+.search-container input {
+  width: 260px;
+  padding: 8px;
+  border-top: 1px solid #A2ADC3;
+  border-left: 1px solid #A2ADC3;
+  border-bottom: 1px solid #A2ADC3;
+  border-right: none;
+}
+.search-container button {
+  padding: 8px;
+  float: right;
+  border-top: 1px solid #A2ADC3;
+  border-right: 1px solid #A2ADC3;
+  border-bottom: 1px solid #A2ADC3;
+  border-left: none;
+  background-color: #fff;
+}
+.search-container i {
+  color: #A2ADC3;
 }
 
 /*# sourceMappingURL=styles.css.map */

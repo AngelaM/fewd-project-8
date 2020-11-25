@@ -1,36 +1,39 @@
-const modal = document.querySelector(".modal");
-const x = document.querySelector(".modal-x");
 const directory = document.querySelector(".directory-container");
-const modalBox = document.querySelector(".modal-content");
-
 const API = 'https://randomuser.me/api/?results=12&nat=US&inc=name,location,email,dob,phone,picture&noinfo';
 let employees=[];
 let cardID = 0;
 
 /********
- * Fetch random employee data and create employee object
+ * Fetch Employee Data from API
  ********/
 
 fetch(API)
     .then(results => results.json())
     .then(results => results.results)
     .then(results => createEmployees(results))
-    .then(results => createContent())
+    .then(results => createContent(results))
     .catch(error => {
+        console.log("There was a problem", error);
         fetch(API)  //try one more time
         .then(results => results.json())
         .then(results => results.results)
         .then(results => createEmployees(results))
-        .then(results => createContent())
-        .catch(error => console.log("There was a problem", error))
+        .then(results => createContent(results))
+        .catch(error => {
+            console.log("There was a problem", error);
+            directory.innerHTML = "<h2>Problem loading employee data</h2>"
+        })
     });
 
-function createContent() {
+function createContent(results) {
     createCards();
     createModal();
 }
 
-//Create array of formatted employee objects
+/********
+ * Create employee array
+ ********/
+
 function createEmployees(employeeData) {
     employeeData.forEach(employee => {
         let {name, email, location, phone, dob, picture} = employee;
@@ -48,27 +51,34 @@ function createEmployees(employeeData) {
     });
 }
 
-//Create employee cards and place in HTML
+/********
+ * Create directory card for each employee and add to HTML
+ ********/
 
 function createCards() {
-    let html = "";
-    for (let i=0; i<employees.length; i++) {
-        html += 
-            `<div class="directory-card" id=${i}>
-                <div class="card-image"><img src="${employees[i].picture}" alt="${employees[i].name}"></div>
+    directory.innerHTML = employees.reduce((html, employee, i) => { 
+    html += `<div class="directory-card" id=${i}>
+                <div class="card-image"><img class="round" src="${employee.picture}" alt="${employee.name}"></div>
                 <div class="card-info">
-                    <div class="name">${employees[i].name}</div>
-                    <div class="email">${employees[i].email}g</div>
-                    <div class="location">${employees[i].location}</div>
+                    <div class="name">${employee.name}</div>
+                    <div class="email">${employee.email}g</div>
+                    <div class="location">${employee.location}</div>
                 </div>
             </div>`;
-    }
-    directory.innerHTML = html;
+    return html;
+    }, " ");
 }
 
-//Create event listeners for modal
+/********
+ * Create modal and add listeners to open, close, and navigate through employees
+ ********/
+
+const modal = document.querySelector(".modal");
+const modalX = document.querySelector(".modal-x");
+const modalBox = document.querySelector(".modal-content");
+
 function createModal() {
-    //Create listener to open modal box
+    //Create listener to open modal box and call function to create modal
     directory.addEventListener("click", (e) => {
         if (e.target !== directory) {
             cardID = parseInt(e.target.closest(".directory-card").getAttribute('id'));
@@ -79,31 +89,20 @@ function createModal() {
 
     //Create listeners for navigation arrows on modal box
     let next = document.querySelector(".next-employee i");
-    let last = document.querySelector(".last-employee i");
-
     next.addEventListener("click", (e) => {
-        console.log(cardID);
-        if(cardID === 11) {
-            cardID = 0;
-        } else {
-            cardID = cardID+1;
-        }
+        cardID = cardID === 11 ? 0 : cardID+1;
         createModalContent(cardID);
     })
 
+    let last = document.querySelector(".last-employee i");
     last.addEventListener("click", (e) => {
-        console.log(cardID);
-        if(cardID === 0) {
-            cardID = 11;
-        } else {
-            cardID = cardID-1;
-        }
+        cardID = cardID === 0 ? 11 : cardID-1;
         createModalContent(cardID);
     })
 
     //Createlisteners to close modal box
     //When the x is clicked
-    x.onclick = function() {
+    modalX.onclick = function() {
         modal.style.display = "none";
     }
     // When the user clicks anywhere outside of the modal box
@@ -114,81 +113,19 @@ function createModal() {
     }
 }
 
-//Create HTML content for a card's employee information
+//Create content for modal's employee information and add to HTML
 function createModalContent(index) {
     let {picture, name, email, location, phone, address, birthday} = employees[index];
-    let html = `<div class="modal-image" id="${index}"><img src="${picture}" alt="${name}"></div>
-                <div class="modal-basic-info">
+    let html = `<div class="modal-image" id="${index}"><img class="round" src="${picture}" alt="${name}"></div>
+                <div class="modal-info">
                     <div class="name">${name}</div>
                     <div class="email">${email}</div>
                     <div class="location">${location}</div>
                 </div>
-                    <div class="modal-contact-info">
+                <div class="modal-contact">
                     <div class="phone">${phone}</div>
                     <div class="address">${address}</div>
                     <div class="birthday">Birthday: ${birthday}</div>
                 </div>`
     modalBox.innerHTML = html;
 }
-
-
-/********
- * Helper Function to Convert State Name to Code
- ********/
-
-getStateCode = function (stateName) {
-    let returnState = this.stateList[stateName]
-    if (returnState) return returnState;
-    return stateName;
-}
-    stateList = {
-    'Arizona': 'AZ',
-    'Alabama': 'AL',
-    'Alaska':'AK',
-    'Arkansas': 'AR',
-    'California': 'CA',
-    'Colorado': 'CO',
-    'Connecticut': 'CT',
-    'Delaware': 'DE',
-    'Florida': 'FL',
-    'Georgia': 'GA',
-    'Hawaii': 'HI',
-    'Idaho': 'ID',
-    'Illinois': 'IL',
-    'Indiana': 'IN',
-    'Iowa': 'IA',
-    'Kansas': 'KS',
-    'Kentucky': 'KY',
-    'Louisiana': 'LA',
-    'Maine': 'ME',
-    'Maryland': 'MD',
-    'Massachusetts': 'MA',
-    'Michigan': 'MI',
-    'Minnesota': 'MN',
-    'Mississippi': 'MS',
-    'Missouri': 'MO',
-    'Montana': 'MT',
-    'Nebraska': 'NE',
-    'Nevada': 'NV',
-    'New Hampshire': 'NH',
-    'New Jersey': 'NJ',
-    'New Mexico': 'NM',
-    'New York': 'NY',
-    'North Carolina': 'NC',
-    'North Dakota': 'ND',
-    'Ohio': 'OH',
-    'Oklahoma': 'OK',
-    'Oregon': 'OR',
-    'Pennsylvania': 'PA',
-    'Rhode Island': 'RI',
-    'South Carolina': 'SC',
-    'South Dakota': 'SD',
-    'Tennessee': 'TN',
-    'Texas': 'TX',
-    'Utah': 'UT',
-    'Vermont': 'VT',
-    'Virginia': 'VA',
-    'Washington': 'WA',
-    'West Virginia': 'WV',
-    'Wisconsin': 'WI',
-    'Wyoming': 'WY'}

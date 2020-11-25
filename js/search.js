@@ -1,19 +1,13 @@
 /********
- * Search Function
+ * Search: Filter by employee name and display only cards which include user input
  ********/
 
 function nameSearch() {
-    let userInput = document.getElementById('search');
-    let filter = userInput.value.toUpperCase();
+    let filter = (document.getElementById('search')).value.toUpperCase();
     let employeeCards= document.querySelectorAll(".directory-card");
-    console.log({userInput, filter, employeeCards});
 
-    for (let i=0; i< employeeCards.length; i++) {
-        let name = employeeCards[i].querySelector(".name").textContent;
-        if (name.toUpperCase().includes(filter)) {
-            employeeCards[i].style.display = "";
-        } else {
-            employeeCards[i].style.display = "none";
-        }
-    }
+    employeeCards.forEach(card => {
+        let name = card.querySelector(".name").textContent.toUpperCase();
+        card.style.display = name.includes(filter) ? "" : "none";
+    });
 }
